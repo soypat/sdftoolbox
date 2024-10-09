@@ -1,7 +1,7 @@
 import numpy as np
 from contextlib import contextmanager
 
-float_dtype = np.float_
+float_dtype = np.float64
 
 
 @contextmanager

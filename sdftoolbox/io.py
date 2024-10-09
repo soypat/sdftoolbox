@@ -2,7 +2,7 @@ import os
 import logging
 from pathlib import Path
 
-import imageio
+
 import numpy as np
 
 from .mesh import compute_face_normals, triangulate_quads
@@ -89,6 +89,7 @@ def import_volume_from_density_image(
     scale = 128.0 / density_range
 
     # Load the intensity values as image
+    import imageio
     I = np.asarray(imageio.v2.imread(fname)).astype(np.float32)
     # Convert back to 'density' which is SDF in our case
     # See comment in docs for more info

@@ -42,13 +42,13 @@ def hom(v, value=1):
 
 def dehom(a):
     """Makes homogeneous vectors inhomogenious."""
-    a = np.asfarray(a, dtype=float_dtype)
+    a = np.asarray(a, dtype=float_dtype)
     return a[..., :-1] / a[..., None, -1]
 
 
 def translate(values: np.ndarray) -> np.ndarray:
     """Construct and return a translation matrix"""
-    values = np.asfarray(values, dtype=float_dtype)
+    values = np.asarray(values, dtype=float_dtype)
     m = np.eye(4, dtype=values.dtype)
     m[:3, 3] = values
     return m
@@ -56,7 +56,7 @@ def translate(values: np.ndarray) -> np.ndarray:
 
 def scale(values: np.ndarray) -> np.ndarray:
     """Construct and return a scaling matrix"""
-    values = np.asfarray(values, dtype=float_dtype)
+    values = np.asarray(values, dtype=float_dtype)
     m = np.eye(4, dtype=values.dtype)
     m[[0, 1, 2], [0, 1, 2]] = values
     return m
@@ -72,7 +72,7 @@ def rotate(axis: np.ndarray, angle: float) -> np.ndarray:
     """Construct a rotation matrix given axis/angle pair."""
     # See
     # https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle
-    axis = np.asfarray(axis, dtype=float_dtype)
+    axis = np.asarray(axis, dtype=float_dtype)
     sina = np.sin(angle)
     cosa = np.cos(angle)
     d = axis / np.linalg.norm(axis)

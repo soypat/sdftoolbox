@@ -112,7 +112,7 @@ class Transform(SDF):
 
     @t_world_local.setter
     def t_world_local(self, m: np.ndarray):
-        self._t_world_local = np.asfarray(m, dtype=float_dtype)
+        self._t_world_local = np.asarray(m, dtype=float_dtype)
         self._update_scale()
         self._update_inv()
 
@@ -248,7 +248,7 @@ class Repetition(SDF):
         periods: tuple[float, float, float] = (1, 1, 1),
         reps: tuple[int, int, int] = None,
     ) -> None:
-        self.periods = np.asfarray(periods, dtype=float_dtype).reshape(1, 1, 1, 3)
+        self.periods = np.asarray(periods, dtype=float_dtype).reshape(1, 1, 1, 3)
         self.node = node
         if reps is not None:
             self.reps = np.array(reps).reshape(1, 1, 1, 3)
@@ -382,8 +382,8 @@ class Plane(SDF):
         normal: tuple[float, float, float] = (0, 0, 1),
     ) -> Transform:
         """Creates a plane from a point and normal direction."""
-        normal = np.asfarray(normal, dtype=float_dtype)
-        origin = np.asfarray(origin, dtype=float_dtype)
+        normal = np.asarray(normal, dtype=float_dtype)
+        origin = np.asarray(origin, dtype=float_dtype)
         normal /= np.linalg.norm(normal)
         # Need to find a rotation that alignes canonical frame's z-axis
         # with normal.
@@ -408,7 +408,7 @@ class Box(SDF):
         self,
         lengths: tuple[float, float, float] = (1.0, 1.0, 1.0),
     ) -> None:
-        self.half_lengths = np.asfarray(lengths, dtype=float_dtype) * 0.5
+        self.half_lengths = np.asarray(lengths, dtype=float_dtype) * 0.5
 
     @staticmethod
     def create(lengths: tuple[float, float, float] = (1.0, 1.0, 1.0)) -> "Box":
