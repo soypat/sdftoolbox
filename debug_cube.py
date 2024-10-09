@@ -69,8 +69,9 @@ def main():
 
     sdftoolbox.plotting.plot_samples(ax, grid.xyz, scene.sample(grid.xyz))
     sdftoolbox.plotting.setup_axes(ax, grid.min_corner, grid.max_corner)
-    # sn.plotting.generate_rotation_gif("normals.gif", fig, ax)
-    plt.show()
+    # sdftoolbox.plotting.generate_rotation_gif("normals.gif", fig, ax)
+    plt.savefig("out.png")
+    # plt.show()
 
 
 if __name__ == "__main__":
