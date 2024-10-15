@@ -199,6 +199,7 @@ def create_mesh_figure(
     face_normals: np.ndarray = None,
     vertex_normals: np.ndarray = None,
     fig_kwargs: dict = None,
+    plotMesh:bool = True,
 ) -> tuple[Figure, Axes]:
     """Helper to quickly plot a single mesh.
 
@@ -227,7 +228,8 @@ def create_mesh_figure(
     fig_kwargs = fig_kwargs or {}
 
     fig, ax = create_figure(**fig_kwargs)
-    plot_mesh(ax, verts, faces, face_normals, vertex_normals)
+    if plotMesh:
+        plot_mesh(ax, verts, faces, face_normals, vertex_normals)
     setup_axes(ax, min_corner, max_corner)
     return fig, ax
 

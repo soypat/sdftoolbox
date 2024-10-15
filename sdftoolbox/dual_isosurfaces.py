@@ -108,6 +108,7 @@ def dual_isosurface(
     # For each axis
     for aidx, off in enumerate(np.eye(3, dtype=np.int32)):
         # Compute the edge target locations and fetch SDF values
+        # Treats each axes independently, 
         tijk = sijk + off[None, :]
         ti, tj, tk = tijk.T
         sdf_dst = padded_sdf_values[ti, tj, tk]
@@ -175,6 +176,7 @@ def dual_isosurface(
     # For each active voxel, we need to find one vertex location. The
     # method todo that depennds on `vertex_placement_mode`. No matter which method
     # is selected, we expect the returned coordinates to be in voxel space.
+    print("active voxels ",active_voxels)
     grid_verts = vertex_strategy.find_vertex_locations(
         active_voxels, edges_isect_coords, node, grid
     )

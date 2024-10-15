@@ -7,6 +7,7 @@ from .dual_strategies import (
     LinearEdgeStrategy,
     NewtonEdgeStrategy,
     BisectionEdgeStrategy,
+    DualContouringVertexStrategy3x3,
 )
 from .grid import Grid
 from . import sdfs

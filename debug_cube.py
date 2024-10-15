@@ -4,10 +4,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sdftoolbox
 
+DIMS=5
 
 def get_rotated_box(rot):
     scene = sdftoolbox.sdfs.Box((1.1, 1.1, 1.1))
-    grid = sdftoolbox.Grid((3, 3, 3))
+    grid = sdftoolbox.Grid((DIMS,DIMS,DIMS))
 
     # Generate mesh
     verts, faces = sdftoolbox.dual_isosurface(
@@ -29,7 +30,7 @@ def main():
     # Setup the scene
     rot = (1.0, 1.0, 1.0, np.pi / 4)
     scene = sdftoolbox.sdfs.Box((1.1, 1.1, 1.1)).transform(rot=rot)
-    grid = sdftoolbox.Grid((3, 3, 3))
+    grid = sdftoolbox.Grid((DIMS,DIMS,DIMS))
 
     # Generate mesh
     verts, faces, debug = sdftoolbox.dual_isosurface(
@@ -44,7 +45,7 @@ def main():
 
     # Plot mesh+normals
     fig, ax = sdftoolbox.plotting.create_mesh_figure(
-        verts, faces
+        verts, faces, plotMesh=True,
     )  # face_normals, vert_normals)
 
     v, f = get_rotated_box(rot)
@@ -63,7 +64,7 @@ def main():
     active_src = grid.grid_to_data(active_src)
     active_dst = grid.grid_to_data(active_dst)
     sdftoolbox.plotting.plot_edges(
-        ax, active_src, active_dst, color="yellow", linewidth=0.5
+        ax, active_src, active_dst, color="green", linewidth=0.5
     )
     sdftoolbox.plotting.plot_normals(ax, isect, isect_n, color="yellow")
 
@@ -71,7 +72,7 @@ def main():
     sdftoolbox.plotting.setup_axes(ax, grid.min_corner, grid.max_corner)
     # sdftoolbox.plotting.generate_rotation_gif("normals.gif", fig, ax)
     plt.savefig("out.png")
-    # plt.show()
+    plt.show()
 
 
 if __name__ == "__main__":
